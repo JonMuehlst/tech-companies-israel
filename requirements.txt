@@ -1,0 +1,38 @@
+# Core dependencies
+streamlit>=1.28.0
+pandas>=2.2.0
+numpy>=1.24.0
+
+# Database
+sqlalchemy>=2.0.0
+psycopg2-binary>=2.9.9  # PostgreSQL adapter
+pymongo>=4.6.1          # MongoDB
+qdrant-client>=1.7.0    # Vector DB
+
+# Authentication & Security
+PyJWT>=2.8.0           # JWT tokens
+python-jose[cryptography]>=3.3.0  # Enhanced JWT support
+passlib[bcrypt]>=1.7.4  # Password hashing
+bcrypt>=4.1.2          # Password hashing
+
+# ML & Data Processing
+scikit-learn>=1.4.0
+sentence-transformers>=2.3.1
+torch>=2.2.0
+transformers>=4.37.2
+
+# Visualization
+plotly>=5.18.0
+
+# Utils
+python-dotenv>=1.0.0
+pydantic>=2.6.1
+pydantic-settings>=2.1.0
+requests>=2.31.0       # HTTP requests
+beautifulsoup4>=4.12.3 # Web scraping
+
+# Development
+pytest>=8.0.0
+black>=24.1.1
+isort>=5.13.2
+flake8>=7.0.0

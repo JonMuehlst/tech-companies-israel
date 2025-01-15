@@ -129,12 +129,23 @@ celerybeat.pid
 
 # Environments
 .env
+.env.local
 .venv
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+.env.development
+.env.production
+.env.local
+.env.staging
+dev/.env.dev
+
+# IDE
+.vscode/
+*.swp
+*.swo
 
 # Spyder project settings
 .spyderproject
@@ -169,3 +180,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Project specific
+data/raw/
+models/
+logs/

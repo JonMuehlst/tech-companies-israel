@@ -1,0 +1,44 @@
+site_name: Tech Companies Israel
+site_description: A platform to explore the Israeli tech ecosystem
+repo_url: https://github.com/yourusername/tech-companies-israel
+
+theme:
+  name: material
+  palette:
+    primary: blue
+    accent: light blue
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - search.suggest
+    - search.highlight
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          rendering:
+            show_source: true
+            show_if_no_docstring: true
+
+nav:
+  - Home: index.md
+  - User Guide:
+    - Getting Started: guide/getting-started.md
+    - Features: guide/features.md
+  - API Reference:
+    - Core: api/core.md
+    - Services: api/services.md
+    - Database: api/database.md
+  - Contributing: contributing.md
+
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - admonition
+  - toc:
+      permalink: true 
