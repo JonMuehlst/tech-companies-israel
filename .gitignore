@@ -19,6 +19,7 @@ lib64/
 parts/
 sdist/
 var/
+venv/
 wheels/
 share/python-wheels/
 *.egg-info/
@@ -146,6 +147,14 @@ dev/.env.dev
 .vscode/
 *.swp
 *.swo
+# Linting and code style configuration
+.pylintrc
+.flake8
+.isort.cfg
+.style.yapf
+.pep8
+.pycodestyle
+.mypy.ini
 
 # Spyder project settings
 .spyderproject
@@ -189,3 +198,4 @@ docker-compose.override.yml
 data/raw/
 models/
 logs/
+activate.ps1
