@@ -141,7 +141,7 @@ venv.bak/
 .env.production
 .env.local
 .env.staging
-dev/.env.dev
+dev/env.dev
 
 # IDE
 .vscode/
