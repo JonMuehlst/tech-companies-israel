@@ -7,6 +7,11 @@ import sys
 from pathlib import Path
 from typing import NoReturn
 
+# Add project root to Python path to allow importing from dev module
+project_root = Path(__file__).parent.parent
+sys.path.append(str(project_root))
+
+# Now we can import from dev.utils
 from dev.utils import get_pythonpath_cmd, load_env_config
 
 
@@ -24,19 +29,24 @@ def run_command(command: list[str], description: str) -> bool:
 
 def setup_environment(with_dev: bool = False) -> bool:
     """Setup virtual environment and PYTHONPATH."""
-    project_root: Path = Path(__file__).parent.parent
     is_windows: bool = platform.system() == "Windows"
 
     # Load configuration from env.dev
     config = load_env_config()
     venv_path: Path = Path(config["VENV_PATH"])
+    python_version: str = config["PYTHON_VERSION"]
 
     # Create venv if it doesn't exist
     if not venv_path.exists():
         print(f"Creating virtual environment at: {venv_path}")
+        # First ensure we're using the correct Python version
+        python_cmd = f"python{python_version}"
         if not run_command(
-            ["python", "-m", "venv", str(venv_path)], "Create virtualenv"
+            [python_cmd, "-m", "venv", str(venv_path)],
+            "Create virtualenv"
         ):
+            print(f"\nError: Failed to create virtualenv. Make sure Python {python_version} is installed.")
+            print(f"Try: 'which {python_cmd}' to verify the Python installation.")
             return False
 
     # Determine activation script and PYTHONPATH command
