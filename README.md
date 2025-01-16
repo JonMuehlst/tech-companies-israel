@@ -24,18 +24,20 @@ git clone https://github.com/yourusername/tech-companies-israel.git
 cd tech-companies-israel
 ```
 
-2. Create a virtual environment:
+2. Set up the development environment:
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+# Initial setup with development tools
+python dev/setup_env.py venv --with-dev
+
+# Generate activation script
+python dev/activate.py venv
+
+# Activate environment
+source activate.sh  # On Unix
+.\activate.bat     # On Windows
 ```
 
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-4. Set up environment variables in `.env`:
+3. Set up environment variables in `.env`:
 ```bash
 # Create .env file from template
 cp .env.example .env
@@ -48,6 +50,11 @@ TCI_POSTGRES_HOST=localhost
 TCI_POSTGRES_PORT=5432
 TCI_POSTGRES_DB=tci
 TCI_SECRET_KEY=your-secure-secret-key  # Change this in production!
+```
+
+4. Install dependencies:
+```bash
+pip install -r requirements.txt
 ```
 
 5. Initialize the database:
@@ -89,12 +96,16 @@ tech-companies-israel/
 │   ├── db/                # Database models and connections
 │   ├── services/          # Business logic
 │   └── web/               # Streamlit web interface
+├── dev/                   # Development tools and utilities
+├── docs/                  # Documentation
 ├── scripts/               # Utility scripts
 ├── tests/                 # Test suite
 ├── .env                   # Environment variables
 ├── .gitignore            # Git ignore rules
-├── README.md             # This file
-└── requirements.txt      # Python dependencies
+├── pyproject.toml        # Project configuration
+├── requirements.txt      # Production dependencies
+├── requirements-dev.txt  # Development dependencies
+└── README.md             # This file
 ```
 
 ## Features
@@ -114,16 +125,40 @@ tech-companies-israel/
 
 ## Development
 
+### Development Tools
+The `dev/` directory contains various tools for development:
+```bash
+# Run all maintenance tasks
+python dev/maintain.py --all
+
+# Format code and run quality checks
+python dev/maintain.py --format --check
+
+# Run tests
+python dev/maintain.py --test
+
+# Build and serve documentation
+python dev/maintain.py --docs
+python dev/maintain.py --serve-docs
+```
+
 ### Running Tests
 ```bash
 pytest
+# or
+python dev/maintain.py --test
 ```
 
 ### Code Style
 We follow PEP 8 guidelines. Format your code using:
 ```bash
-black .
-isort .
+python dev/maintain.py --format
+```
+
+### Documentation
+Documentation is built using MkDocs. To view it locally:
+```bash
+python dev/maintain.py --serve-docs
 ```
 
 ## Contributing

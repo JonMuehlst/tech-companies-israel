@@ -6,43 +6,53 @@ This directory contains tools for development and maintenance of the project.
 
 ### Environment Setup and Activation
 ```bash
-# Initial setup
-python dev/setup_env.py venv --with-dev
+# Initial setup (creates virtual environment)
+python dev/setup_env.py venv --with-dev  # Includes development dependencies
 
 # Generate activation script (do this once)
 python dev/activate.py venv
 
 # Activate environment (do this every time)
-source activate.sh  # On Unix
-.\activate.bat     # On Windows
+source activate.sh    # On Unix
+.\activate.bat       # On Windows
 ```
 
-### Code Maintenance
+### Code Maintenance (`maintain.py`)
+
+The `maintain.py` script provides various commands for code maintenance:
+
 ```bash
 # Run all maintenance tasks
 python dev/maintain.py --all
 
-# Format code only
-python dev/maintain.py --format
+# Code Formatting
+python dev/maintain.py --format    # Runs black and isort
 
-# Run quality checks
-python dev/maintain.py --check
+# Quality Checks
+python dev/maintain.py --check     # Runs flake8, pylint, mypy, and bandit
 
-# Run tests
-python dev/maintain.py --test
+# Testing
+python dev/maintain.py --test      # Runs pytest with coverage
 
-# Build documentation
-python dev/maintain.py --docs
+# Documentation
+python dev/maintain.py --docs      # Builds MkDocs documentation
+python dev/maintain.py --serve-docs # Serves documentation locally
 
-# Serve documentation locally
-python dev/maintain.py --serve-docs
+# Dependencies
+python dev/maintain.py --deps      # Checks for outdated dependencies
 
-# Check dependencies
-python dev/maintain.py --deps
-
-# Clean artifacts
-python dev/maintain.py --clean
+# Cleanup
+python dev/maintain.py --clean     # Removes artifacts and cache files
 ```
+
+### Environment Files
+- `env.dev.example` - Template for development environment variables
+- `env.dev` - Your local development environment variables (not committed)
+
+### Utility Modules
+- `utils.py` - Common utility functions used by development tools
+- `setup_env.py` - Environment setup and dependency management
+- `activate.py` - Generates environment activation scripts
 
 ## Common Development Tasks
 
@@ -70,10 +80,18 @@ python dev/maintain.py --format --check --test
 
 3. Working on documentation:
 ```bash
+# Build and serve docs
 python dev/maintain.py --serve-docs
 ```
 
 4. Cleaning up:
 ```bash
+# Remove all build artifacts and cache
 python dev/maintain.py --clean
-``` 
+```
+
+## Notes
+
+- Always activate your environment before running any development commands
+- The `--with-dev` flag in setup includes additional dependencies needed for development
+- Run `maintain.py --all` before submitting pull requests to ensure all checks pass 
