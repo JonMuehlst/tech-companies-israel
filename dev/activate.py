@@ -6,12 +6,16 @@ import sys
 from pathlib import Path
 from typing import NoReturn
 
+# Add project root to Python path to allow importing from dev module
+project_root = Path(__file__).parent.parent
+sys.path.append(str(project_root))
+
+# Now we can import from dev.utils
 from dev.utils import get_pythonpath_cmd, load_env_config
 
 
 def generate_activation_commands() -> Path:
     """Generate shell commands to activate venv and set PYTHONPATH."""
-    project_root: Path = Path(__file__).parent.parent
     config = load_env_config()
 
     venv_path: Path = Path(config["VENV_PATH"])
