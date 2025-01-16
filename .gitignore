@@ -199,3 +199,4 @@ data/raw/
 models/
 logs/
 activate.ps1
+activate.sh
